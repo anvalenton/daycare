@@ -1,0 +1,26 @@
+.employeename-container {
+	border-radius: 5px;
+	color: white;
+	width: fit-content;
+	padding: 4px;
+	font-size: 3vh;
+    display: none;
+}
+
+.isPrese
+
+#A-group {
+	background-color: #ce5471;
+}
+
+#B-group {
+	background-color: #5475ce;
+}
+
+#C-group {
+	background-color: #fdac29;
+}
+
+#D-group {
+	background-color: #53a763;
+}
