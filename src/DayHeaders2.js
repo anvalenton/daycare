@@ -1,28 +1,48 @@
 import React from "react";
+import "./DayHeaders2.css";
 
 
 
 const DayHeaders2 = () => {
 
+    //static obj but can be retrieved through API in future
 
 
-
-
+    const nextWorkingDays = [
+        {'day': 'Monday',
+         'date': 23,
+         'month': 8  },
+         {'day': 'Tuesday',
+         'date': 24,
+         'month': 8  },
+         {'day': 'Wednesday',
+         'date': 25,
+         'month': 8  },
+         {'day': 'Thursday',
+         'date': 26,
+         'month': 8  },
+         {'day': 'Friday',
+         'date': 27,
+         'month': 8  },
+         
+    ]
 
     return (
 
         <div className='dayheader-container'>
-            <div >hello
-              
-
+            <div >
+                {nextWorkingDays.map((dayElem) => (
+                   <div className='wholeday-container'>
+                        <div>
+                        {dayElem.day}
+                        </div>
+                        <div>
+                        {`${dayElem.month}/${dayElem.date}`}   
+                        </div>
+                    </div>
+                ))}
             </div>
-
-
         </div>
-
-
-
-
     )
 
 }

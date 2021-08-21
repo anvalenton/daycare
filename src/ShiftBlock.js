@@ -5,11 +5,10 @@ import Employee from "./Employee";
 import "./ShiftBlock.css";
 
 
-//RECEIVES  start time, end time, names based on group, color, attendance
+
 
 const ShiftBlock = ({colorNum, startTime, endTime, className}) => {
     
-//SHIFTBLOCK takes in one group or color, start time, end time, 
 
 const colorKeys = {
     1: 'red', 2: 'blue', 3: 'yellow', 4: 'green'
