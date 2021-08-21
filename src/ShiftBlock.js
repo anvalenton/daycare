@@ -2,11 +2,12 @@
 import React from "react";
 import { useSelector, shallowEqual } from 'react-redux'
 import Employee from "./Employee";
+import "./ShiftBlock.css";
 
 
 //RECEIVES  start time, end time, names based on group, color, attendance
 
-const ShiftBlock = ({colorNum, startTime, endTime}) => {
+const ShiftBlock = ({colorNum, startTime, endTime, className}) => {
     
 //SHIFTBLOCK takes in one group or color, start time, end time, 
 
@@ -16,31 +17,30 @@ const colorKeys = {
 
 let updatedShifts = useSelector(store => store.data, shallowEqual);
 
-console.log('updatedShifts in ShiftBlock is', updatedShifts);
 //compare group numbers on data to passed group number, if its a match and emp is working, render that <employee>
+let workersToDisplay = updatedShifts.filter((worker) => {
+    return (worker.group === colorNum) && worker.working}); 
 
-console.log('colorNum is', colorNum);
+if (workersToDisplay.length === 0) {
+    workersToDisplay = [{name: 'None'}]
+}
 
 return (
 <>
-    <div>{startTime}</div>
-        <div className='employeename-container' >
+     
+    <div className={`shiftblock-container ${className}`}> 
+    <div className='shiftblock-subcontainer-starttime time'>{startTime}</div>
 
-            {updatedShifts.map((worker) => {
+        <div className='shiftblock-subcontainer-emp'>
 
-
-                if (worker.group === colorNum && worker.working) {
-                    console.log('hi im inside conditional');
-                    return <Employee name={worker.name} group={colorKeys[colorNum]}></Employee>
-                }
-
-                
-
-            })}
+            {workersToDisplay.map((worker) => (
+                 <Employee name={worker.name} group={colorKeys[colorNum]}></Employee>
+            ))}
 
         </div>
-    <div>{endTime}</div>
 
+    <div className="time">{endTime}</div>
+    </div>       
 </>
 
 

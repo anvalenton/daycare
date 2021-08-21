@@ -5,6 +5,8 @@ import axios from 'axios';
 
 const API_URL = "https://app.fakejson.com/q";
 
+// const API_URL_2 = "https://cf33ff02-f7a6-48ce-9465-f78a870e014d.mock.pstmn.io"
+
 
 export function getSchedule(requestedPayload) {
   
@@ -12,6 +14,7 @@ export function getSchedule(requestedPayload) {
   //dispatch needs to be passed into the async func to be called
   return async function (dispatch) {
     try {
+     
       const response = await axios.post(API_URL, requestedPayload);
       const arrayFromRes = response.data;
       let withinHours = withinBusinessHours();
@@ -61,31 +64,34 @@ function closeBiz() {
 
 export function withinBusinessHours() {
     
-    const startHourInAM = 7;
-    const endHourInPM = 17;
-    const endMinutesInPM = 30;
+    //commented out below just for testing
 
-    const date = new Date();
-    const day = date.getDay();
-    const isWeekday = day > 0 && day < 6 ? true : false;
+    // const startHourInAM = 7;
+    // const endHourInPM = 17;
+    // const endMinutesInPM = 30;
 
-    if (!isWeekday) return false;
+    // const date = new Date();
+    // const day = date.getDay();
+    // const isWeekday = day > 0 && day < 6 ? true : false;
 
-    const hour = date.getHours();
-    const minutes = date.getMinutes();
+    // if (!isWeekday) return false;
 
-    let isWithinHours;
+    // const hour = date.getHours();
+    // const minutes = date.getMinutes();
 
-    if (hour >= startHourInAM && hour <= endHourInPM) {
+    // let isWithinHours;
 
-        if (hour === endHourInPM && minutes >= endMinutesInPM) {
-            isWithinHours = false;
-        }
+    // if (hour >= startHourInAM && hour <= endHourInPM) {
 
-        else {
-            isWithinHours = true;
-        }
-    }
-    return isWithinHours;
+    //     if (hour === endHourInPM && minutes >= endMinutesInPM) {
+    //         isWithinHours = false;
+    //     }
+
+    //     else {
+    //         isWithinHours = true;
+    //     }
+    // }
+    // return isWithinHours;
+    return true;
 
 }

@@ -5,11 +5,12 @@ import React from "react";
 
 const Employee = ({name, group}) => {
     
-
+   
 
 return (
 
-<div className={`employeename-container ${group}`} >
+
+<div className={`employeename-subcontainer ${group}`} >
 
     <span className='employeename'>{name}</span>
 

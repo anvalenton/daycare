@@ -1,6 +1,5 @@
 import React from "react";
-
-
+import "./Room.css";
 import ShiftBlock from "./ShiftBlock";
 import { useSelector } from "react-redux";
 
@@ -32,9 +31,10 @@ for (let i = 0; i < 5; i++) {
 
     if (lastShiftGroup === 'B') {
 
-        rows.push(<div  className='shiftblock-container'>
-        <ShiftBlock className='shiftblock' colorNum={numKeys[aShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
-        <ShiftBlock className='shiftblock'  colorNum={numKeys[aShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
+        rows.push(<div  className='shiftblock-container-ampm'>
+        <ShiftBlock className='amshiftblock' colorNum={numKeys[aShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
+
+        <ShiftBlock className='pmshiftblock'  colorNum={numKeys[aShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
         </div>)
 
         lastShiftGroup = 'A';
@@ -42,9 +42,9 @@ for (let i = 0; i < 5; i++) {
     }
 
     else {
-        rows.push(    <div className='shiftblock-container'>
-        <ShiftBlock className='shiftblock' colorNum={numKeys[bShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
-        <ShiftBlock className='shiftblock' colorNum={numKeys[bShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
+        rows.push(    <div className='shiftblock-container-ampm'>
+        <ShiftBlock className='amshiftblock' colorNum={numKeys[bShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
+        <ShiftBlock className='pmshiftblock' colorNum={numKeys[bShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
         </div>);
 
         lastShiftGroup = 'B';
@@ -54,11 +54,17 @@ for (let i = 0; i < 5; i++) {
 
 return (
 
-    <div>
-       <div>Room {roomNum}</div>
-       <div>{roomData.notes}</div>
+    <div className='room-container'>
+        <div className='room-container-roomnum-container'>
+            <div className={`room-container-roomnum room${roomNum}`}>ROOM {roomNum}</div>
+       </div>
 
-       <div>
+       <div className='room-container-notes'>
+           <h2>ROOM DETAILS</h2>
+           {roomData.notes}
+        </div>
+
+       <div className='room-rows'>
            {rows}
        </div>
        
