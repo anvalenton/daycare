@@ -1,6 +1,6 @@
 import React from "react";
 import "./DayHeaders2.css";
-import Clock from "./Clock";
+
 
 
 
@@ -30,7 +30,7 @@ const DayHeaders2 = () => {
     return (
 
         <div className='dayheader-container'>
-            <Clock></Clock>
+           
             <div className='days-container' >
                 {nextWorkingDays.map((dayElem) => (
                    <div className='wholeday-container'>

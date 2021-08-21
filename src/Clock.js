@@ -15,7 +15,7 @@ const Clock = () => {
 
         },1000)
 
-
+        return () => clearInterval(timerID);
 
     }, [])
 
