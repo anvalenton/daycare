@@ -3,8 +3,7 @@ import Room from "./Room.js";
 import "./AllRooms.css";
 import { getSchedule } from "./actionCreators";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { setIntervalAsync } from 'set-interval-async/dynamic';
-import { clearIntervalAsync } from 'set-interval-async'
+
 
 //payload is the contains auth token to get dummy info from fakeJSON.com site
 //return is an array of person objects, has 10 elements
@@ -17,7 +16,6 @@ const payload = {
     "_repeat": 8
     }
   };
-
 
 
 const AllRooms = () => {
@@ -40,7 +38,7 @@ const AllRooms = () => {
             //getSchedule calls dispatch 
             //dispatch within getSchedule is to update state with response received
             //this is first call to the API upon start of app
-            callToStore(getSchedule(payload));
+            // callToStore(getSchedule(payload));
 
             //below is an async interval to run throughout the day
             // let startIntervalID = setIntervalAsync(() => {
@@ -66,7 +64,7 @@ const AllRooms = () => {
 
        
         if (!isOpenFromStore) {
-            clearIntervalAsync(intervalIDFromStore);
+            clearInterval(intervalIDFromStore);
         }
        
     }, [isOpenFromStore, intervalIDFromStore])
