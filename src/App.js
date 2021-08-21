@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      {/* <DayHeaders></DayHeaders> */}
+      <DayHeaders></DayHeaders>
       <AllRooms></AllRooms>
     
     </div>
