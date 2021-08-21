@@ -1,3 +1,10 @@
 .dayheader-container {
     border: 1px solid red;
 }
+
+.days-container {
+    display: flex;
+}
+.wholeday-container {
+    border: 1px solid seagreen;
+}

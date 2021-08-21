@@ -5,6 +5,7 @@ import { getSchedule } from "./actionCreators";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { setIntervalAsync } from 'set-interval-async/dynamic';
 import { clearIntervalAsync } from 'set-interval-async'
+import DayHeaders2 from "./DayHeaders2.js";
 
 //payload is the contains auth token to get dummy info from fakeJSON.com site
 //return is an array of person objects, has 10 elements
@@ -95,6 +96,7 @@ return (
 
     <>
         <div className='allrooms-container'>
+        <DayHeaders2></DayHeaders2>
         <Room roomNum='1' aShift={{am:'A',pm:'A'}} bShift={{am:'B',pm:'B'}} roomData={room1Data}> </Room>
 
 

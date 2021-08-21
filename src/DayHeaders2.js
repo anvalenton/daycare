@@ -3,10 +3,10 @@ import "./DayHeaders2.css";
 
 
 
+
 const DayHeaders2 = () => {
 
     //static obj but can be retrieved through API in future
-
 
     const nextWorkingDays = [
         {'day': 'Monday',
@@ -30,15 +30,19 @@ const DayHeaders2 = () => {
     return (
 
         <div className='dayheader-container'>
-            <div >
+          
+            <div className='days-container' >
                 {nextWorkingDays.map((dayElem) => (
                    <div className='wholeday-container'>
-                        <div>
+
+                        <div className='day-container'>
                         {dayElem.day}
                         </div>
+
                         <div>
                         {`${dayElem.month}/${dayElem.date}`}   
                         </div>
+
                     </div>
                 ))}
             </div>

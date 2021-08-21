@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const API_URL = "https://app.fakejson.com/q";
 
-// const API_URL_2 = "https://cf33ff02-f7a6-48ce-9465-f78a870e014d.mock.pstmn.io"
 
 
 export function getSchedule(requestedPayload) {
