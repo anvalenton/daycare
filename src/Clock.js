@@ -1,16 +1,33 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import moment from 'moment';
 
 
 const Clock = () => {
 
-    const [clock, updateClock] = useState();
+
+    let timeNow = moment().format('LTS'); 
+    const [clock, updateClock] = useState(timeNow);
+
+    useEffect(() => {
+
+        const timerID = setInterval(() => {
+            updateClock(moment().format('LTS'))
+
+        },1000)
 
 
+
+    }, [])
 
     return (
+        <div>
+            <div>{moment().format("MMM Do YY")}</div>
+            <div>{clock}</div>
 
-        <div></div>
+
+        </div>
+        
+
 
     )
 
