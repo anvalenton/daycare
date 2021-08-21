@@ -1,13 +1,13 @@
 
 import AllRooms from './AllRooms';
-import DayHeaders from './DayHeaders';
+import DayHeaders2 from "./DayHeaders2";
 import './App.css';
 
 
 function App() {
   return (
     <div className="App">
-      {/* <DayHeaders></DayHeaders> */}
+      <DayHeaders2></DayHeaders2>
       <AllRooms></AllRooms>
     
     </div>
