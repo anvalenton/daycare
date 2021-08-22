@@ -2,6 +2,7 @@
 import axios from 'axios';
 import moment from 'moment';
 
+
 const API_URL = "https://app.fakejson.com/q";
 
 
@@ -16,7 +17,7 @@ export function getSchedule(requestedPayload) {
       const response = await axios.post(API_URL, requestedPayload);
       const arrayFromRes = response.data;
       const withinHours = withinBusinessHours();
-      console.log('response from api is', arrayFromRes)
+      
 
       if (withinHours) {
         dispatch(gotNewData(arrayFromRes))
@@ -24,7 +25,7 @@ export function getSchedule(requestedPayload) {
       }
       
       else if(!withinHours) {
-
+       
           dispatch(closeBiz());
       }
 
@@ -55,6 +56,8 @@ function closeBiz() {
     }
 }
 
+
+
 //below to be called on first render inside a useEffect
 //storestate should be array itself and not store object
 //argument being passed in is 
@@ -74,11 +77,14 @@ export function checkOrUpdateWorkingDays(workDaysArray) {
     else {
       //get entire first element
       const firstElemToUpdate = workDaysCopy[0]
-
+      const firstElemShiftGrp = firstElemToUpdate.shiftGrp
+      //get nextweek day object
       const nxtWeekObj = moment().add(7,'days');
       //below gets '8/21' format
       const nxtWeekDate = nxtWeekObj.format("M[/]YY");
-      const updatedWorkDate = {...firstElemToUpdate, moDate: nxtWeekDate}
+      const nextShiftGrp = firstElemShiftGrp === 'A'? 'B': 'A';
+      
+      const updatedWorkDate = {...firstElemToUpdate, moDate: nxtWeekDate, shiftGrp: nextShiftGrp}
       //pushing updated/new workday object to end of array
       workDaysCopy.push(updatedWorkDate);
       workDaysCopy.shift();
@@ -89,9 +95,6 @@ export function checkOrUpdateWorkingDays(workDaysArray) {
       type: 'UPDATE_WORKINGDAYS',
       updatedWorkDays: workDaysCopy
   }
-
-
-
 
 }
 

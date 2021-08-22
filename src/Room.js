@@ -1,7 +1,7 @@
 import React from "react";
 import "./Room.css";
 import ShiftBlock from "./ShiftBlock";
-import { useSelector } from "react-redux";
+import { useSelector} from "react-redux";
 import uuid from "react-uuid";
 
 const Room = ({roomNum,aShift,bShift, roomData}) => {
@@ -11,7 +11,7 @@ const Room = ({roomNum,aShift,bShift, roomData}) => {
     // 3 = c = yellow;
     // 4 = d = green;
 
-let lastShiftGroup = useSelector(st => st.yesterdayShift);
+let lastShiftGroup = useSelector(st => st.workingdays[0].shiftGrp);
 
 const numKeys = {
     A: 1,
@@ -27,11 +27,11 @@ const hours = {
     pmEnd: '5:30 PM'
 }
 
-let rows = [];
+const rows = [];
 for (let i = 0; i < 5; i++) {
 
     if (lastShiftGroup === 'B') {
-
+        //below is one day block. shows am and pm shift
         rows.push(<div key={uuid()} className='shiftblock-container-ampm'>
         <ShiftBlock className='amshiftblock' colorNum={numKeys[aShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
 

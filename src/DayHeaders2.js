@@ -8,7 +8,6 @@ const DayHeaders2 = () => {
 
    
     const dispatch = useDispatch();
-
     const workingDaysInStore= useSelector(st => st.workingdays,shallowEqual);
     const updatedDays = checkOrUpdateWorkingDays(workingDaysInStore);
     //updates days in store array after render. will cause rerender

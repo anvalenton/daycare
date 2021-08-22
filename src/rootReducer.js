@@ -27,13 +27,12 @@ const INITIAL_STATE = {
     ],
     'isDaycareOpen': true,
     'intervalID': null,
-    'yesterdayShift': 'B',
     'workingdays': [
-        {'moDate': '8/23', 'day': 'Monday', 'dayNum': 1},
-        {'moDate': '8/24', 'day': 'Tuesday', 'dayNum': 2},
-        {'moDate': '8/25', 'day': 'Wednesday', 'dayNum': 3},
-        {'moDate': '8/26', 'day': 'Thursday', 'dayNum': 4},
-        {'moDate': '8/27', 'day': 'Friday', 'dayNum': 5}
+        {'moDate': '8/23', 'day': 'Monday', 'shiftGrp': 'A'},
+        {'moDate': '8/24', 'day': 'Tuesday', 'shiftGrp': 'B'},
+        {'moDate': '8/25', 'day': 'Wednesday', 'shiftGrp': 'A'},
+        {'moDate': '8/26', 'day': 'Thursday', 'shiftGrp': 'B'},
+        {'moDate': '8/27', 'day': 'Friday', 'shiftGrp': 'A'}
      
     ]
     };
@@ -60,7 +59,9 @@ function rootReducer(state=INITIAL_STATE, action) {
            
             return {...state, workingdays: action.updatedWorkDays};
 
+        case 'UPDATE_YESTERDAYSHIFTGROUP':
 
+            return {...state, yesterdayShift: action.newShiftGroup};
 
         default:
             return state;
