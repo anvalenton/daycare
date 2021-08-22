@@ -1,65 +1,47 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import "./DayHeaders2.css";
-// import moment from 'moment';
+import moment from 'moment';
 import uuid from 'react-uuid'
-
-
-
 
 const DayHeaders2 = () => {
 
-    //static obj but can be retrieved through API in future
+    // const curDayObject = moment(); 
+    // const curDay = curDayObject.day(); 
 
-    const nextWorkingDays = [
-        {'day': 'Monday',
-         'date': 23,
-         'month': 8  },
-         {'day': 'Tuesday',
-         'date': 24,
-         'month': 8  },
-         {'day': 'Wednesday',
-         'date': 25,
-         'month': 8  },
-         {'day': 'Thursday',
-         'date': 26,
-         'month': 8  },
-         {'day': 'Friday',
-         'date': 27,
-         'month': 8  },
-         
-    ]
-    //BELOW CODE CAUSING BUGS. ISSUE WITH MOMENT JS? DAYJS also caused same issue
-    //app will not load in browser. loading circle forever despite succesful compilation.no errors in console for Chrome. Firefox displays TypeError
-    //error was TypeError b is undefined. in index.js. connected to redux
+    const workingDaysInStore= useSelector(st => (st.workingdays),shallowEqual);
+   //returns 0 (sunday) to 6 (saturday);
 
-    // let next5WorkingDays = [];
-    // let cur = moment();
-
-    // const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-
-
-    // while (next5WorkingDays.length < 5) {
     
-    //     let dayIs = cur.format('dddd');
-    //     //if its a weekday. Sunday 0. Saturday is 6
-    //     if (daysOfWeek.indexOf(dayIs) >=0 ) {
-    //         console.log('inside here');
-    //         let moDate = cur.format("M[/]YY")
-    //         let workingDay = {'day':dayIs, 'monthDate': moDate}
+    // const daysOfWeek = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
-    //         next5WorkingDays.push(workingDay);
+   
 
-    //         cur = moment().add(1, 'd');
-    //     }
+//    while (next5WorkingDays.length < 6) {
+    
+//         let dayIs = cur.format('dddd');
+//         console.log('dayIs is', dayIs);
+//         //if its a weekday. Sunday 0. Saturday is 6
+//         if (daysOfWeek.indexOf(dayIs) >=0 ) {
+           
+//             let moDate = cur.format("M[/]YY")
+//             let workingDay = {'day':dayIs, 'monthDate': moDate}
 
-    // }    
+//             next5WorkingDays.push(workingDay);
+
+//         }
+//         cur = moment().add(1, 'd');
+//         console.log('cur is', cur);
+//     }    
+
+//     console.log('next5working is', next5WorkingDays);
 
     return (
 
         <div className='dayheader-container'>
            
             <div className='days-container' >
-                {nextWorkingDays.map((dayElem) => (
+                {next5WorkingDays.map((dayElem) => (
                    <div key={uuid()} className='wholeday-container'>
 
                         <div className='day-container'>
@@ -67,7 +49,7 @@ const DayHeaders2 = () => {
                         </div>
 
                         <div>
-                        {`${dayElem.month}/${dayElem.date}`}   
+                        {dayElem.monthDate}   
                         </div>
 
                     </div>

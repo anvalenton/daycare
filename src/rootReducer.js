@@ -13,10 +13,29 @@ const INITIAL_STATE = {
     'group': 2
     },
     
+    {
+    "name": "Alexio",
+    "working": true,
+    'group': 3
+        },
+
+    {
+    "name": "Andrew",
+    "working": true,
+    'group': 4
+         }
     ],
     'isDaycareOpen': true,
     'intervalID': null,
-    'yesterdayShift': 'B'
+    'yesterdayShift': 'B',
+    'workingdays': [
+        {'moDate': '8/23', 'day': 'Monday', 'dayNum': 1},
+        {'moDate': '8/24', 'day': 'Tuesday', 'dayNum': 2},
+        {'moDate': '8/25', 'day': 'Wednesday', 'dayNum': 1},
+        {'moDate': '8/26', 'day': 'Thursday', 'dayNum': 2},
+        {'moDate': '8/27', 'day': 'Friday', 'dayNum': 1}
+     
+    ]
     };
 
 
