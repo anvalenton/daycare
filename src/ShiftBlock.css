@@ -2,3 +2,24 @@
 
 
 
+/* .shiftblock-container shows either am or pm but not both */
+.shiftblock-container {
+    /* border: 1px solid blue; */
+    width: 10vw;
+   
+    margin-right: 1vw;
+
+
+}
+.shiftblock-subcontainer-emp {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+    border-left: .2vw solid white;
+    padding-left: 1vw;
+    width: 100%;
+    
+    display: flex;
+    flex-wrap: wrap;
+
+}

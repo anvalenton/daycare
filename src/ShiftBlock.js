@@ -3,24 +3,23 @@ import React from "react";
 import { useSelector, shallowEqual } from 'react-redux'
 import Employee from "./Employee";
 import "./ShiftBlock.css";
-
-
-//RECEIVES  start time, end time, names based on group, color, attendance
+import uuid from 'react-uuid';
 
 const ShiftBlock = ({colorNum, startTime, endTime, className}) => {
     
-//SHIFTBLOCK takes in one group or color, start time, end time, 
-
+//refers to shift designations
 const colorKeys = {
     1: 'red', 2: 'blue', 3: 'yellow', 4: 'green'
 }
 
+//shallowEqual compares store value to previous store value
 let updatedShifts = useSelector(store => store.data, shallowEqual);
 
 //compare group numbers on data to passed group number, if its a match and emp is working, render that <employee>
 let workersToDisplay = updatedShifts.filter((worker) => {
     return (worker.group === colorNum) && worker.working}); 
 
+//if array is empty at least render "none" to show no available employee for that shift
 if (workersToDisplay.length === 0) {
     workersToDisplay = [{name: 'None'}]
 }
@@ -34,7 +33,7 @@ return (
         <div className='shiftblock-subcontainer-emp'>
 
             {workersToDisplay.map((worker) => (
-                 <Employee name={worker.name} group={colorKeys[colorNum]}></Employee>
+                 <Employee key={uuid()} name={worker.name} group={colorKeys[colorNum]}></Employee>
             ))}
 
         </div>

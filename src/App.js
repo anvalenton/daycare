@@ -1,14 +1,14 @@
 
-// import AllRooms from './AllRooms';
-import DayHeaders from './DayHeaders';
+import AllRooms from './AllRooms';
+import Clock from "./Clock";
 import './App.css';
 
 
 function App() {
   return (
     <div className="App">
-      <DayHeaders></DayHeaders>
-      {/* <AllRooms></AllRooms> */}
+       <Clock></Clock>
+      <AllRooms></AllRooms>
     
     </div>
   );

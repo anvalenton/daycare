@@ -1,7 +1,8 @@
 import React from "react";
 import "./Room.css";
 import ShiftBlock from "./ShiftBlock";
-import { useSelector } from "react-redux";
+import { useSelector} from "react-redux";
+import uuid from "react-uuid";
 
 const Room = ({roomNum,aShift,bShift, roomData}) => {
 
@@ -10,7 +11,7 @@ const Room = ({roomNum,aShift,bShift, roomData}) => {
     // 3 = c = yellow;
     // 4 = d = green;
 
-let lastShiftGroup = useSelector(st => st.yesterdayShift);
+let lastShiftGroup = useSelector(st => st.workingdays[0].shiftGrp);
 
 const numKeys = {
     A: 1,
@@ -26,25 +27,27 @@ const hours = {
     pmEnd: '5:30 PM'
 }
 
-let rows = [];
+const rows = [];
 for (let i = 0; i < 5; i++) {
 
     if (lastShiftGroup === 'B') {
+        //below is one day block. shows am and pm shift
+        //below is B shift
+        rows.push(<div key={uuid()} className='shiftblock-container-ampm'>
+        <ShiftBlock className='amshiftblock' colorNum={numKeys[bShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
 
-        rows.push(<div  className='shiftblock-container-ampm'>
-        <ShiftBlock className='amshiftblock' colorNum={numKeys[aShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
-
-        <ShiftBlock className='pmshiftblock'  colorNum={numKeys[aShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
+        <ShiftBlock className='pmshiftblock'  colorNum={numKeys[bShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
         </div>)
 
         lastShiftGroup = 'A';
 
     }
-
+    //below is A shift
     else {
-        rows.push(    <div className='shiftblock-container-ampm'>
-        <ShiftBlock className='amshiftblock' colorNum={numKeys[bShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
-        <ShiftBlock className='pmshiftblock' colorNum={numKeys[bShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
+        rows.push(    <div key={uuid()} className='shiftblock-container-ampm'>
+        <ShiftBlock className='amshiftblock' colorNum={numKeys[aShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
+
+        <ShiftBlock className='pmshiftblock' colorNum={numKeys[aShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
         </div>);
 
         lastShiftGroup = 'B';

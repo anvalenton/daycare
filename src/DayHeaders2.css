@@ -1,0 +1,33 @@
+.dayheader-container {
+    /* border: 1px solid red; */
+    width: 80vw;
+    align-self: flex-start;
+    margin-left: 17vw;
+    display: flex;
+    align-items: flex-end;
+    padding: 0;
+    
+}
+
+.days-container {
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
+    font-size: 3vh;
+}
+.wholeday-container {
+    border: 1px solid seagreen;
+    width: 14vw;
+    margin-left: 1vw;
+    border: .2vw solid #f5b9799c;
+    background-color: #fcd0a2 ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #838383;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+  
+  
+
+}

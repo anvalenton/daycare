@@ -1,0 +1,17 @@
+
+.clock-container {
+    width: 17vw;
+    margin: 2vh;
+    position: absolute;
+    color: rgb(125, 125, 125);
+    font-weight: bold;
+}
+
+.clock-date {
+    letter-spacing: .2vw;
+    font-size: 3vh;
+
+}
+.clock {
+    font-size: 3.5vh;
+}

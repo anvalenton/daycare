@@ -1,11 +1,10 @@
 
 import axios from 'axios';
-
+import moment from 'moment';
 
 
 const API_URL = "https://app.fakejson.com/q";
 
-// const API_URL_2 = "https://cf33ff02-f7a6-48ce-9465-f78a870e014d.mock.pstmn.io"
 
 
 export function getSchedule(requestedPayload) {
@@ -17,8 +16,8 @@ export function getSchedule(requestedPayload) {
      
       const response = await axios.post(API_URL, requestedPayload);
       const arrayFromRes = response.data;
-      let withinHours = withinBusinessHours();
-      console.log('response frm api is', arrayFromRes)
+      const withinHours = withinBusinessHours();
+      
 
       if (withinHours) {
         dispatch(gotNewData(arrayFromRes))
@@ -26,14 +25,10 @@ export function getSchedule(requestedPayload) {
       }
       
       else if(!withinHours) {
-
+       
           dispatch(closeBiz());
       }
 
-      console.log('inside async getSchedule in actionCreators file')
-      ;
-      
-     
     } 
     
     catch (e) {
@@ -50,7 +45,7 @@ function gotNewData(schedule) {
 }
 
 function gotError(error) {
-    console.log('e is', error);
+  
     throw new Error('API call did not work');
 }
 
@@ -62,36 +57,77 @@ function closeBiz() {
 }
 
 
-export function withinBusinessHours() {
-    
-    //commented out below just for testing
 
-    // const startHourInAM = 7;
-    // const endHourInPM = 17;
-    // const endMinutesInPM = 30;
+//below to be called on first render inside a useEffect
+//storestate should be array itself and not store object
+//argument being passed in is 
+export function checkOrUpdateWorkingDays(workDaysArray) {
+    //below is working days array
+    //first elem in array should be current day
+    //if not, its removed and new working date pushed to end
+    const workDaysCopy = [...workDaysArray];
+    const cur = moment()
+    //below gives "8/21" string format
+    const moDateToday = cur.format("M[/]YY")
 
-    // const date = new Date();
-    // const day = date.getDay();
-    // const isWeekday = day > 0 && day < 6 ? true : false;
+    //first element in store.workingdays. first elem should represent current day
+    const firstDayInStore = workDaysCopy[0].moDate;
 
-    // if (!isWeekday) return false;
+    if (moDateToday === firstDayInStore) return;
+    else {
+      //get entire first element
+      const firstElemToUpdate = workDaysCopy[0]
+      const firstElemShiftGrp = firstElemToUpdate.shiftGrp
+      //get nextweek day object
+      const nxtWeekObj = moment().add(7,'days');
+      //below gets '8/21' format
+      const nxtWeekDate = nxtWeekObj.format("M[/]YY");
+      const nextShiftGrp = firstElemShiftGrp === 'A'? 'B': 'A';
+      
+      const updatedWorkDate = {...firstElemToUpdate, moDate: nxtWeekDate, shiftGrp: nextShiftGrp}
+      //pushing updated/new workday object to end of array
+      workDaysCopy.push(updatedWorkDate);
+      workDaysCopy.shift();
 
-    // const hour = date.getHours();
-    // const minutes = date.getMinutes();
+    }
 
-    // let isWithinHours;
-
-    // if (hour >= startHourInAM && hour <= endHourInPM) {
-
-    //     if (hour === endHourInPM && minutes >= endMinutesInPM) {
-    //         isWithinHours = false;
-    //     }
-
-    //     else {
-    //         isWithinHours = true;
-    //     }
-    // }
-    // return isWithinHours;
-    return true;
+    return {
+      type: 'UPDATE_WORKINGDAYS',
+      updatedWorkDays: workDaysCopy
+  }
 
 }
+
+
+export function withinBusinessHours() {
+    
+    const startHourInAM = 7;
+    const endHourInPM = 17;
+    const endMinutesInPM = 30;
+
+    const date = new Date();
+    const day = date.getDay();
+    const isWeekday = day > 0 && day < 6 ? true : false;
+
+    if (!isWeekday) return false;
+
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
+
+    let isWithinHours;
+
+    if (hour >= startHourInAM && hour <= endHourInPM) {
+
+        if (hour === endHourInPM && minutes >= endMinutesInPM) {
+            isWithinHours = false;
+        }
+
+        else {
+            isWithinHours = true;
+        }
+    }
+    return isWithinHours;
+    
+
+}
+
