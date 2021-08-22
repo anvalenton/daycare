@@ -31,9 +31,9 @@ const INITIAL_STATE = {
     'workingdays': [
         {'moDate': '8/23', 'day': 'Monday', 'dayNum': 1},
         {'moDate': '8/24', 'day': 'Tuesday', 'dayNum': 2},
-        {'moDate': '8/25', 'day': 'Wednesday', 'dayNum': 1},
-        {'moDate': '8/26', 'day': 'Thursday', 'dayNum': 2},
-        {'moDate': '8/27', 'day': 'Friday', 'dayNum': 1}
+        {'moDate': '8/25', 'day': 'Wednesday', 'dayNum': 3},
+        {'moDate': '8/26', 'day': 'Thursday', 'dayNum': 4},
+        {'moDate': '8/27', 'day': 'Friday', 'dayNum': 5}
      
     ]
     };
@@ -45,13 +45,7 @@ function rootReducer(state=INITIAL_STATE, action) {
 
         case 'UPDATE_SCHEDULE':
             //just replacing the state object with new data from api.
-            const date = new Date();
-            const hour = date.getHours();
-            const minutes = date.getMinutes();
-            
-            console.log('inside update schedule');
-            console.log('current time is', hour, minutes)
-            
+        
             return { ...state, data: action.data};
 
         case 'UPDATE_BUSINESS_CLOSE':
@@ -61,6 +55,12 @@ function rootReducer(state=INITIAL_STATE, action) {
         case 'UPDATE_INTERVAL_ID':
 
             return {...state, intervalID: action.intervalID};
+
+        case 'UPDATE_WORKINGDAYS':
+           
+            return {...state, workingdays: action.updatedWorkDays};
+
+
 
         default:
             return state;

@@ -40,13 +40,14 @@ const AllRooms = () => {
             //dispatch within getSchedule is to update state with response received
             //this is first call to the API upon start of app
             callToStore(getSchedule(payload));
+            
 
             //below is an async interval to run throughout the day
             let startIntervalID = setIntervalAsync(() => {               
                 callToStore(getSchedule(payload))}    
                 , 300000);
 
-            //change interval to 5 min 300,000 milsecs
+            //5 min 300,000 milsecs
 
             //adding the newly created intervalID to state store
             //argument passed in is the action object to be received by rootReducer
@@ -67,11 +68,6 @@ const AllRooms = () => {
        
     }, [isOpenFromStore, intervalIDFromStore])
 
-
-    //variables needed by room - room number, shiftblock start and end times, 
-    //shiftblock colors
- 
-    
     // 1 = a = red;
     // 2 = b = blue;
     // 3 = c = yellow;

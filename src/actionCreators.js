@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import moment from 'moment';
 
 const API_URL = "https://app.fakejson.com/q";
 
@@ -47,11 +48,51 @@ function gotError(error) {
     throw new Error('API call did not work');
 }
 
-export function closeBiz() {
+function closeBiz() {
     return {
         type: 'UPDATE_BUSINESS_CLOSE',
         isDaycareOpen: false
     }
+}
+
+//below to be called on first render inside a useEffect
+//storestate should be array itself and not store object
+//argument being passed in is 
+export function checkOrUpdateWorkingDays(workDaysArray) {
+    //below is working days array
+    //first elem in array should be current day
+    //if not, its removed and new working date pushed to end
+    const workDaysCopy = [...workDaysArray];
+    const cur = moment()
+    //below gives "8/21" string format
+    const moDateToday = cur.format("M[/]YY")
+
+    //first element in store.workingdays. first elem should represent current day
+    const firstDayInStore = workDaysCopy[0].moDate;
+
+    if (moDateToday === firstDayInStore) return;
+    else {
+      //get entire first element
+      const firstElemToUpdate = workDaysCopy[0]
+
+      const nxtWeekObj = moment().add(7,'days');
+      //below gets '8/21' format
+      const nxtWeekDate = nxtWeekObj.format("M[/]YY");
+      const updatedWorkDate = {...firstElemToUpdate, moDate: nxtWeekDate}
+      //pushing updated/new workday object to end of array
+      workDaysCopy.push(updatedWorkDate);
+      workDaysCopy.shift();
+
+    }
+
+    return {
+      type: 'UPDATE_WORKINGDAYS',
+      updatedWorkDays: workDaysCopy
+  }
+
+
+
+
 }
 
 

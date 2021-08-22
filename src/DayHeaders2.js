@@ -1,47 +1,36 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import "./DayHeaders2.css";
-import moment from 'moment';
+import { checkOrUpdateWorkingDays } from "./actionCreators";
 import uuid from 'react-uuid'
 
 const DayHeaders2 = () => {
 
-    // const curDayObject = moment(); 
-    // const curDay = curDayObject.day(); 
-
-    const workingDaysInStore= useSelector(st => (st.workingdays),shallowEqual);
-   //returns 0 (sunday) to 6 (saturday);
-
-    
-    // const daysOfWeek = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-
    
+    const dispatch = useDispatch();
 
-//    while (next5WorkingDays.length < 6) {
+    const workingDaysInStore= useSelector(st => st.workingdays,shallowEqual);
+    const updatedDays = checkOrUpdateWorkingDays(workingDaysInStore);
+    //updates days in store array after render. will cause rerender
+    //if workingdays array is not current
+    useEffect(() => {
+
+        if (!updatedDays.length === undefined) {
+
+            dispatch(checkOrUpdateWorkingDays(updatedDays))
+        }
+        
+
+    }, [dispatch, updatedDays])
     
-//         let dayIs = cur.format('dddd');
-//         console.log('dayIs is', dayIs);
-//         //if its a weekday. Sunday 0. Saturday is 6
-//         if (daysOfWeek.indexOf(dayIs) >=0 ) {
-           
-//             let moDate = cur.format("M[/]YY")
-//             let workingDay = {'day':dayIs, 'monthDate': moDate}
 
-//             next5WorkingDays.push(workingDay);
-
-//         }
-//         cur = moment().add(1, 'd');
-//         console.log('cur is', cur);
-//     }    
-
-//     console.log('next5working is', next5WorkingDays);
 
     return (
 
         <div className='dayheader-container'>
            
             <div className='days-container' >
-                {next5WorkingDays.map((dayElem) => (
+                {workingDaysInStore.map((dayElem) => (
                    <div key={uuid()} className='wholeday-container'>
 
                         <div className='day-container'>
@@ -49,7 +38,7 @@ const DayHeaders2 = () => {
                         </div>
 
                         <div>
-                        {dayElem.monthDate}   
+                        {dayElem.moDate}   
                         </div>
 
                     </div>
