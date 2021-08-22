@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Room from "./Room.js";
 import "./AllRooms.css";
-import { getSchedule } from "./actionCreators";
+import { getSchedule, closeBiz } from "./actionCreators";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { setIntervalAsync } from 'set-interval-async/dynamic';
 import { clearIntervalAsync } from 'set-interval-async'
@@ -42,20 +42,19 @@ const AllRooms = () => {
             callToStore(getSchedule(payload));
 
             //below is an async interval to run throughout the day
-            // let startIntervalID = setIntervalAsync(() => {
-            //     console.log('hey its the timer');
-            //     callToStore(getSchedule(payload))}    
-            //     , 300000);
+            let startIntervalID = setIntervalAsync(() => {               
+                callToStore(getSchedule(payload))}    
+                , 300000);
 
             //change interval to 5 min 300,000 milsecs
 
             //adding the newly created intervalID to state store
             //argument passed in is the action object to be received by rootReducer
-            // callToStore({type:'UPDATE_INTERVAL_ID',intervalID: startIntervalID })
+            callToStore({type:'UPDATE_INTERVAL_ID', intervalID: startIntervalID })
 
-        //   return (
-        //       clearInterval(startIntervalID)
-        //   )
+          return (
+              clearInterval(startIntervalID)
+          )
       
     }, [callToStore])  
 
@@ -87,6 +86,9 @@ const AllRooms = () => {
         notes: 'Over 5 years old'
     }
 
+    function testing() {
+        callToStore(closeBiz());
+    }
 
 return (
 
@@ -94,7 +96,6 @@ return (
         <div className='allrooms-container'>
         <DayHeaders2></DayHeaders2>
         <Room roomNum='1' aShift={{am:'A',pm:'A'}} bShift={{am:'B',pm:'B'}} roomData={room1Data}> </Room>
-
 
         <Room roomNum='2' aShift={{am:'A',pm:'B'}} bShift={{am:'C',pm:'D'}} roomData={room2Data}>this is a room</Room>
         </div>

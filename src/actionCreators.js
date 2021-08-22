@@ -1,8 +1,6 @@
 
 import axios from 'axios';
 
-
-
 const API_URL = "https://app.fakejson.com/q";
 
 
@@ -16,8 +14,8 @@ export function getSchedule(requestedPayload) {
      
       const response = await axios.post(API_URL, requestedPayload);
       const arrayFromRes = response.data;
-      let withinHours = withinBusinessHours();
-      console.log('response frm api is', arrayFromRes)
+      const withinHours = withinBusinessHours();
+      console.log('response from api is', arrayFromRes)
 
       if (withinHours) {
         dispatch(gotNewData(arrayFromRes))
@@ -29,10 +27,6 @@ export function getSchedule(requestedPayload) {
           dispatch(closeBiz());
       }
 
-      console.log('inside async getSchedule in actionCreators file')
-      ;
-      
-     
     } 
     
     catch (e) {
@@ -49,11 +43,11 @@ function gotNewData(schedule) {
 }
 
 function gotError(error) {
-    console.log('e is', error);
+  
     throw new Error('API call did not work');
 }
 
-function closeBiz() {
+export function closeBiz() {
     return {
         type: 'UPDATE_BUSINESS_CLOSE',
         isDaycareOpen: false
@@ -64,7 +58,7 @@ function closeBiz() {
 export function withinBusinessHours() {
     
     const startHourInAM = 7;
-    const endHourInPM = 23;
+    const endHourInPM = 17;
     const endMinutesInPM = 30;
 
     const date = new Date();
@@ -93,9 +87,3 @@ export function withinBusinessHours() {
 
 }
 
-export function withinBusinessHours2() {
-
-
-
-  
-}
