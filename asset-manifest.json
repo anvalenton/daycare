@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/daycare/static/css/main.07180365.chunk.css",
-    "main.js": "/daycare/static/js/main.79a3c7c2.chunk.js",
-    "main.js.map": "/daycare/static/js/main.79a3c7c2.chunk.js.map",
+    "main.css": "/daycare/static/css/main.efd41c3e.chunk.css",
+    "main.js": "/daycare/static/js/main.ebc17dbb.chunk.js",
+    "main.js.map": "/daycare/static/js/main.ebc17dbb.chunk.js.map",
     "runtime-main.js": "/daycare/static/js/runtime-main.ca14faf8.js",
     "runtime-main.js.map": "/daycare/static/js/runtime-main.ca14faf8.js.map",
     "static/js/2.25a591af.chunk.js": "/daycare/static/js/2.25a591af.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.a401d45f.chunk.js": "/daycare/static/js/3.a401d45f.chunk.js",
     "static/js/3.a401d45f.chunk.js.map": "/daycare/static/js/3.a401d45f.chunk.js.map",
     "index.html": "/daycare/index.html",
-    "static/css/main.07180365.chunk.css.map": "/daycare/static/css/main.07180365.chunk.css.map",
+    "static/css/main.efd41c3e.chunk.css.map": "/daycare/static/css/main.efd41c3e.chunk.css.map",
     "static/js/2.25a591af.chunk.js.LICENSE.txt": "/daycare/static/js/2.25a591af.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ca14faf8.js",
     "static/js/2.25a591af.chunk.js",
-    "static/css/main.07180365.chunk.css",
-    "static/js/main.79a3c7c2.chunk.js"
+    "static/css/main.efd41c3e.chunk.css",
+    "static/js/main.ebc17dbb.chunk.js"
   ]
 }
