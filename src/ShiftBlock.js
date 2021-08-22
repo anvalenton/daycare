@@ -3,9 +3,7 @@ import React from "react";
 import { useSelector, shallowEqual } from 'react-redux'
 import Employee from "./Employee";
 import "./ShiftBlock.css";
-
-
-
+import uuid from 'react-uuid';
 
 const ShiftBlock = ({colorNum, startTime, endTime, className}) => {
     
@@ -33,7 +31,7 @@ return (
         <div className='shiftblock-subcontainer-emp'>
 
             {workersToDisplay.map((worker) => (
-                 <Employee name={worker.name} group={colorKeys[colorNum]}></Employee>
+                 <Employee key={uuid()} name={worker.name} group={colorKeys[colorNum]}></Employee>
             ))}
 
         </div>

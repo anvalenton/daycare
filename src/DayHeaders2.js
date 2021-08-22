@@ -1,6 +1,7 @@
 import React from "react";
 import "./DayHeaders2.css";
 // import moment from 'moment';
+import uuid from 'react-uuid'
 
 
 
@@ -59,7 +60,7 @@ const DayHeaders2 = () => {
            
             <div className='days-container' >
                 {nextWorkingDays.map((dayElem) => (
-                   <div className='wholeday-container'>
+                   <div key={uuid()} className='wholeday-container'>
 
                         <div className='day-container'>
                         {dayElem.day}

@@ -2,6 +2,7 @@ import React from "react";
 import "./Room.css";
 import ShiftBlock from "./ShiftBlock";
 import { useSelector } from "react-redux";
+import uuid from "react-uuid";
 
 const Room = ({roomNum,aShift,bShift, roomData}) => {
 
@@ -31,7 +32,7 @@ for (let i = 0; i < 5; i++) {
 
     if (lastShiftGroup === 'B') {
 
-        rows.push(<div  className='shiftblock-container-ampm'>
+        rows.push(<div key={uuid()} className='shiftblock-container-ampm'>
         <ShiftBlock className='amshiftblock' colorNum={numKeys[aShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
 
         <ShiftBlock className='pmshiftblock'  colorNum={numKeys[aShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
@@ -42,7 +43,7 @@ for (let i = 0; i < 5; i++) {
     }
 
     else {
-        rows.push(    <div className='shiftblock-container-ampm'>
+        rows.push(    <div key={uuid()} className='shiftblock-container-ampm'>
         <ShiftBlock className='amshiftblock' colorNum={numKeys[bShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
         <ShiftBlock className='pmshiftblock' colorNum={numKeys[bShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
         </div>);

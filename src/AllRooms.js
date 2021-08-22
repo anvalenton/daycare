@@ -19,8 +19,6 @@ const payload = {
     }
   };
 
-
-
 const AllRooms = () => {
 
     //callToStore allows usage of dispatch() directly
@@ -34,7 +32,7 @@ const AllRooms = () => {
 
     
   
-    //runs at start and when isOpenFromStore is updated
+   
     useEffect(() => {
     
             //when callToStore is run, dispatch is run within that func
@@ -61,11 +59,9 @@ const AllRooms = () => {
       
     }, [callToStore])  
 
-
+    //callToStore added as dependency of useEffect for stability. runs once.
 
     useEffect(() => {
-
-       
         if (!isOpenFromStore) {
             clearIntervalAsync(intervalIDFromStore);
         }
@@ -82,7 +78,7 @@ const AllRooms = () => {
     // 3 = c = yellow;
     // 4 = d = green;
 
-
+    //static variables but can be drawn from API in future
     const room1Data = {
        notes: "Under 5 years old"
     }

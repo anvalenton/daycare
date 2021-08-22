@@ -63,34 +63,39 @@ function closeBiz() {
 
 export function withinBusinessHours() {
     
-    //commented out below just for testing
+    const startHourInAM = 7;
+    const endHourInPM = 23;
+    const endMinutesInPM = 30;
 
-    // const startHourInAM = 7;
-    // const endHourInPM = 17;
-    // const endMinutesInPM = 30;
+    const date = new Date();
+    const day = date.getDay();
+    const isWeekday = day > 0 && day < 6 ? true : false;
 
-    // const date = new Date();
-    // const day = date.getDay();
-    // const isWeekday = day > 0 && day < 6 ? true : false;
+    if (!isWeekday) return false;
 
-    // if (!isWeekday) return false;
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
 
-    // const hour = date.getHours();
-    // const minutes = date.getMinutes();
+    let isWithinHours;
 
-    // let isWithinHours;
+    if (hour >= startHourInAM && hour <= endHourInPM) {
 
-    // if (hour >= startHourInAM && hour <= endHourInPM) {
+        if (hour === endHourInPM && minutes >= endMinutesInPM) {
+            isWithinHours = false;
+        }
 
-    //     if (hour === endHourInPM && minutes >= endMinutesInPM) {
-    //         isWithinHours = false;
-    //     }
+        else {
+            isWithinHours = true;
+        }
+    }
+    return isWithinHours;
+    
 
-    //     else {
-    //         isWithinHours = true;
-    //     }
-    // }
-    // return isWithinHours;
-    return true;
+}
 
+export function withinBusinessHours2() {
+
+
+
+  
 }
