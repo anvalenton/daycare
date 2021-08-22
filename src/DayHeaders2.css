@@ -11,9 +11,9 @@
 
 .days-container {
     display: flex;
-    /* border: 1px solid blue; */
     align-items: flex-end;
     margin: 0;
+    font-size: 3vh;
 }
 .wholeday-container {
     border: 1px solid seagreen;
@@ -26,6 +26,7 @@
     color: #838383;
     font-weight: bold;
     text-transform: uppercase;
+    
   
   
 

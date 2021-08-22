@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Room from "./Room.js";
 import "./AllRooms.css";
-import { getSchedule, closeBiz } from "./actionCreators";
+import { getSchedule } from "./actionCreators";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { setIntervalAsync } from 'set-interval-async/dynamic';
 import { clearIntervalAsync } from 'set-interval-async'
@@ -86,9 +86,6 @@ const AllRooms = () => {
         notes: 'Over 5 years old'
     }
 
-    function testing() {
-        callToStore(closeBiz());
-    }
 
 return (
 
