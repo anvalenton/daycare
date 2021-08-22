@@ -32,20 +32,22 @@ for (let i = 0; i < 5; i++) {
 
     if (lastShiftGroup === 'B') {
         //below is one day block. shows am and pm shift
+        //below is B shift
         rows.push(<div key={uuid()} className='shiftblock-container-ampm'>
-        <ShiftBlock className='amshiftblock' colorNum={numKeys[aShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
+        <ShiftBlock className='amshiftblock' colorNum={numKeys[bShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
 
-        <ShiftBlock className='pmshiftblock'  colorNum={numKeys[aShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
+        <ShiftBlock className='pmshiftblock'  colorNum={numKeys[bShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
         </div>)
 
         lastShiftGroup = 'A';
 
     }
-
+    //below is A shift
     else {
         rows.push(    <div key={uuid()} className='shiftblock-container-ampm'>
-        <ShiftBlock className='amshiftblock' colorNum={numKeys[bShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
-        <ShiftBlock className='pmshiftblock' colorNum={numKeys[bShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
+        <ShiftBlock className='amshiftblock' colorNum={numKeys[aShift.am]} startTime={hours.amStart} endTime={hours.amEnd}></ShiftBlock>
+
+        <ShiftBlock className='pmshiftblock' colorNum={numKeys[aShift.pm]} startTime={hours.pmStart} endTime={hours.pmEnd}></ShiftBlock>
         </div>);
 
         lastShiftGroup = 'B';
