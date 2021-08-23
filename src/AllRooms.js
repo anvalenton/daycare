@@ -4,7 +4,6 @@ import "./AllRooms.css";
 import { getSchedule } from "./actionCreators";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { setIntervalAsync } from 'set-interval-async/dynamic';
-import { clearIntervalAsync } from 'set-interval-async'
 import DayHeaders2 from "./DayHeaders2.js";
 
 //payload is the contains auth token to get dummy info from fakeJSON.com site
