@@ -62,35 +62,51 @@ function closeBiz() {
 //storestate should be array itself and not store object
 //argument being passed in is 
 export function checkOrUpdateWorkingDays(workDaysArray) {
+    console.log('inside check or update');
     //below is working days array
     //first elem in array should be current day
     //if not, its removed and new working date pushed to end
     const workDaysCopy = [...workDaysArray];
+    // today moment object
     const cur = moment()
-    //below gives "8/21" string format
-    const moDateToday = cur.format("M[/]YY")
+    //below gives "8/23" string format
+    
+    const moDateToday = cur.format("M[/]DD/YY")
 
     //first element in store.workingdays. first elem should represent current day
-    const firstDayInStore = workDaysCopy[0].moDate;
+    let firstDayObj = workDaysCopy[0];
+    let firstDayInStore = workDaysCopy[0].moDate;
 
-    if (moDateToday === firstDayInStore) return;
-    else {
-      //get entire first element
-      const firstElemToUpdate = workDaysCopy[0]
-      const firstElemShiftGrp = firstElemToUpdate.shiftGrp
-      //get nextweek day object
-      const nxtWeekObj = moment().add(7,'days');
-      //below gets '8/21' format
-      const nxtWeekDate = nxtWeekObj.format("M[/]YY");
-      const nextShiftGrp = firstElemShiftGrp === 'A'? 'B': 'A';
+    if (moDateToday === firstDayInStore) {
+      console.log('is equal');
+      return;}
+
+   
+
+   
       
-      const updatedWorkDate = {...firstElemToUpdate, moDate: nxtWeekDate, shiftGrp: nextShiftGrp}
+      while (firstDayInStore !== moDateToday) {
+
+      
+      let firstDayShiftGrp = firstDayObj.shiftGrp
+      //get nextweek day object
+      let nxtWeekObj = moment(firstDayInStore).add(7,'days');
+     
+      //below gets '8/21' format
+      let nxtWeekDate = nxtWeekObj.format("M[/]DD/YY");
+      let nextShiftGrp = firstDayShiftGrp === 'A'? 'B': 'A';
+      
+      let updatedWorkDate = {...firstDayObj, moDate: nxtWeekDate, shiftGrp: nextShiftGrp}
       //pushing updated/new workday object to end of array
       workDaysCopy.push(updatedWorkDate);
       workDaysCopy.shift();
+      
+      firstDayObj = workDaysCopy[0];
+      firstDayInStore = workDaysCopy[0].moDate;
 
-    }
-
+      }
+    
+      
     return {
       type: 'UPDATE_WORKINGDAYS',
       updatedWorkDays: workDaysCopy

@@ -28,11 +28,11 @@ const INITIAL_STATE = {
     'isDaycareOpen': true,
     'intervalID': null,
     'workingdays': [
-        {'moDate': '8/23', 'day': 'Monday', 'shiftGrp': 'A'},
-        {'moDate': '8/24', 'day': 'Tuesday', 'shiftGrp': 'B'},
-        {'moDate': '8/25', 'day': 'Wednesday', 'shiftGrp': 'A'},
-        {'moDate': '8/26', 'day': 'Thursday', 'shiftGrp': 'B'},
-        {'moDate': '8/27', 'day': 'Friday', 'shiftGrp': 'A'}
+        {'moDate': '8/23/21', 'day': 'Monday', 'shiftGrp': 'A'},
+        {'moDate': '8/24/21', 'day': 'Tuesday', 'shiftGrp': 'B'},
+        {'moDate': '8/25/21', 'day': 'Wednesday', 'shiftGrp': 'A'},
+        {'moDate': '8/26/21', 'day': 'Thursday', 'shiftGrp': 'B'},
+        {'moDate': '8/27/21', 'day': 'Friday', 'shiftGrp': 'A'}
      
     ]
     };
