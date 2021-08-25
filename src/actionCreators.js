@@ -60,9 +60,9 @@ function closeBiz() {
 
 //below to be called on first render inside a useEffect
 //storestate should be array itself and not store object
-//argument being passed in is 
+//argument being passed in is work day array
 export function checkOrUpdateWorkingDays(workDaysArray) {
-    console.log('inside check or update');
+    
     //below is working days array
     //first elem in array should be current day
     //if not, its removed and new working date pushed to end
@@ -78,13 +78,10 @@ export function checkOrUpdateWorkingDays(workDaysArray) {
     let firstDayInStore = workDaysCopy[0].moDate;
 
     if (moDateToday === firstDayInStore) {
-      console.log('is equal');
+      
       return;}
 
    
-
-   
-      
       while (firstDayInStore !== moDateToday) {
 
       
