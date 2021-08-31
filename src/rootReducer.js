@@ -33,8 +33,32 @@ const INITIAL_STATE = {
         {'moDate': '8/25/21', 'day': 'Wednesday', 'shiftGrp': 'A'},
         {'moDate': '8/26/21', 'day': 'Thursday', 'shiftGrp': 'B'},
         {'moDate': '8/27/21', 'day': 'Friday', 'shiftGrp': 'A'}
-     
-    ]
+    ],
+    'hours':{
+    'amStart': '7:00 AM',
+    'amEnd':'12:00 PM',
+    'pmStart': '12:00 PM',
+    'pmEnd': '5:30 PM'
+    },  
+
+    'room1': {
+       'stdDayAM': 'red',
+       'stdDayPM': 'red',
+        'altDayAM': 'blue',
+        'altDayPM': 'blue',
+    },
+
+    'room2': {
+        'stdDayAM': 'red',
+        'stdDayPM': 'blue',
+         'altDayAM': 'yellow',
+         'altDayPM': 'green',
+     },
+
+
+
+    
+    
     };
 
 
