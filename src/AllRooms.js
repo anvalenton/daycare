@@ -67,19 +67,10 @@ const AllRooms = () => {
        
     }, [isOpenFromStore, intervalIDFromStore])
 
-    // 1 = a = red;
-    // 2 = b = blue;
-    // 3 = c = yellow;
-    // 4 = d = green;
-
-    //static variables but can be drawn from API in future
-    const room1Data = {
-       notes: "Under 5 years old"
-    }
-    const room2Data = 
-    {
-        notes: 'Over 5 years old'
-    }
+   
+    //can be refactored in the future as a loop if more rooms will be added
+    const room1Data = useSelector(st => st.room1);
+    const room2Data = useSelector(st => st.room2);
 
 
 return (
@@ -87,9 +78,9 @@ return (
     <>
         <div className='allrooms-container'>
         <DayHeaders2></DayHeaders2>
-        <Room roomNum='1' aShift={{am:'A',pm:'A'}} bShift={{am:'B',pm:'B'}} roomData={room1Data}> </Room>
+        <Room roomNum='1' roomData={room1Data} />
 
-        <Room roomNum='2' aShift={{am:'A',pm:'B'}} bShift={{am:'C',pm:'D'}} roomData={room2Data}>this is a room</Room>
+        <Room roomNum='2' roomData={room2Data} />
         </div>
     </>
 

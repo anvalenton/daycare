@@ -42,22 +42,33 @@ const INITIAL_STATE = {
     },  
 
     'room1': {
-       'stdDayAM': 'red',
-       'stdDayPM': 'red',
-        'altDayAM': 'blue',
-        'altDayPM': 'blue',
+        'A':
+       {'AM': 'red',
+       'PM': 'red',},
+       'B': {
+        'AM': 'blue',
+        'PM': 'blue',},
+        'notes': "Under 5 years old"
     },
 
     'room2': {
-        'stdDayAM': 'red',
-        'stdDayPM': 'blue',
-         'altDayAM': 'yellow',
-         'altDayPM': 'green',
-     },
+        'A':
+       {'AM': 'red',
+       'PM': 'blue',},
+       'B': {
+        'AM': 'yellow',
+        'PM': 'green',},
+        'notes': 'Over 5 years old'
+    },
 
+  
+    'numKeys2': {
+        '1': {'letter':'A', 'color': 'red'},
+        '2': {'letter':'B', 'color': 'blue'},
+        '3': {'letter': 'C', 'color': 'yellow'},
+        '4': {'letter': 'D', 'color': 'green'}
+    }
 
-
-    
     
     };
 
@@ -68,7 +79,7 @@ function rootReducer(state=INITIAL_STATE, action) {
 
         case 'UPDATE_SCHEDULE':
             //just replacing the state object with new data from api.
-        
+    
             return { ...state, data: action.data};
 
         case 'UPDATE_BUSINESS_CLOSE':
